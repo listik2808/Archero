@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Scripts.Logic;
+using System;
 using System.Collections.Generic;
-using CodeBase.Logic;
 
 namespace Scripts.Infrastructure
 {
@@ -9,12 +9,13 @@ namespace Scripts.Infrastructure
     private Dictionary<Type, IExitableState> _states;
     private IExitableState _activeState;
 
-    public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain loadingCurtain)
+    public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain loadingCurtain, StartCountdown startCountdown)
     {
       _states = new Dictionary<Type, IExitableState>
       {
         [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader),
-        [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain),
+        [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain, startCountdown),
+        [typeof(LoadingCountdown)] = new LoadingCountdown(this, startCountdown),
         [typeof(GameLoopState)] = new GameLoopState(this),
       };
     }

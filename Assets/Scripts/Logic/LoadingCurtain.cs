@@ -1,9 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-namespace CodeBase.Logic
+namespace Scripts.Logic
 {
-  public class LoadingCurtain : MonoBehaviour
+    public class LoadingCurtain : MonoBehaviour
   {
     public CanvasGroup Curtain;
 

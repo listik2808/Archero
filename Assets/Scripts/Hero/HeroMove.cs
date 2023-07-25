@@ -1,5 +1,4 @@
-﻿using Scripts.CameraLogic;
-using Scripts.Infrastructure;
+﻿using Scripts.Infrastructure;
 using Scripts.Services.Input;
 using UnityEngine;
 

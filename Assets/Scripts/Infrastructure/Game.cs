@@ -1,4 +1,4 @@
-using CodeBase.Logic;
+using Scripts.Logic;
 using Scripts.Services.Input;
 
 namespace Scripts.Infrastructure
@@ -8,9 +8,9 @@ namespace Scripts.Infrastructure
         public static IInputService InputService;
         public GameStateMachine StateMachine;
 
-        public Game(ICoroutineRunner coroutineRunner, LoadingCurtain curtain)
+        public Game(ICoroutineRunner coroutineRunner, LoadingCurtain curtain, StartCountdown startCountdown)
         {
-            StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner), curtain);
+            StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner), curtain, startCountdown);
         }
     }
 }
