@@ -28,6 +28,7 @@ namespace Scripts.CameraLogic
         {
             Vector3 followingPosition = _following.position;
             followingPosition.y += _offsetY;
+            followingPosition.x = 0;
             return followingPosition;
         }
     }
