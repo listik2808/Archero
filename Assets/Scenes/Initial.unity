@@ -284,6 +284,10 @@ PrefabInstance:
       value: CountDown
       objectReference: {fileID: 0}
     - target: {fileID: 614647110985146142, guid: cc7d67ab21fff5f47bae65c994393afd, type: 3}
+      propertyPath: _prefabHero
+      value: 
+      objectReference: {fileID: 8037294472174197521, guid: 145fc072d3ab2fe4094eb171bdc6c944, type: 3}
+    - target: {fileID: 614647110985146142, guid: cc7d67ab21fff5f47bae65c994393afd, type: 3}
       propertyPath: _elapsedTime
       value: 4
       objectReference: {fileID: 0}
