@@ -1,4 +1,5 @@
 ﻿using Scripts.Infrastructure;
+using Scripts.Infrastructure.Services;
 using Scripts.Services.Input;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ namespace Scripts.Hero
 
         private void Awake()
         {
-            _inputService = Game.InputService;
+            _inputService = AllServices.Container.Single<IInputService>();
         }
 
         private void Start()

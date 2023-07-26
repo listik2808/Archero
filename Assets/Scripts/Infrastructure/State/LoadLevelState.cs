@@ -1,25 +1,28 @@
-﻿using Scripts.CameraLogic;
+﻿using Scripts.Infrastructure.Factory;
+using Scripts.CameraLogic;
 using Scripts.Logic;
 using UnityEngine;
 
-namespace Scripts.Infrastructure
+namespace Scripts.Infrastructure.State
 {
     public class LoadLevelState : IPayloadedState<string>
     {
-        private const string HeroPath = "Hero/hero";
+
         private const string InitialPointTag = "InitialPoint";
-        private const string HudPath = "Hud/Hud";
+
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly LoadingCurtain _loadingCurtain;
         private readonly StartCountdown _startCountdown;
+        private readonly IGamefactory _gamefactory;
 
-        public LoadLevelState(GameStateMachine gameStateMachine, SceneLoader sceneLoader, LoadingCurtain loadingCurtain, StartCountdown startCountdown)
+        public LoadLevelState(GameStateMachine gameStateMachine, SceneLoader sceneLoader, LoadingCurtain loadingCurtain, StartCountdown startCountdown, IGamefactory gamefactory)
         {
             _stateMachine = gameStateMachine;
             _sceneLoader = sceneLoader;
             _loadingCurtain = loadingCurtain;
             _startCountdown = startCountdown;
+            _gamefactory = gamefactory;
         }
 
         public void Enter(string sceneName)
@@ -33,28 +36,15 @@ namespace Scripts.Infrastructure
 
         private void onLoaded()
         {
-            var initialPoint = GameObject.FindWithTag(InitialPointTag);
-            GameObject hero = Instantiate(path: HeroPath, at: initialPoint.transform.position);
-            Instantiate(HudPath);
-
+            GameObject hero = _gamefactory.CreateHero(GameObject.FindWithTag(InitialPointTag));
+            _gamefactory.CreateHud();
             CameraFollow(hero);
+
             _startCountdown.SetComponent(hero);
-            _stateMachine.Enter<LoadingCountdown>();
+            _stateMachine.Enter<LoadingCountdownState>();
         }
 
         private void CameraFollow(GameObject hero) =>
           Camera.main.GetComponent<CameraFollow>().Follow(hero);
-
-        private static GameObject Instantiate(string path)
-        {
-            var heroPrefab = Resources.Load<GameObject>(path);
-            return Object.Instantiate(heroPrefab);
-        }
-
-        private static GameObject Instantiate(string path, Vector3 at)
-        {
-            var prefab = Resources.Load<GameObject>(path);
-            return Object.Instantiate(prefab, at, Quaternion.identity);
-        }
     }
 }

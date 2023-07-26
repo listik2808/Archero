@@ -1,13 +1,12 @@
 ﻿using Scripts.Logic;
-using System.Diagnostics;
 
-namespace Scripts.Infrastructure
+namespace Scripts.Infrastructure.State
 {
-    public class LoadingCountdown : IState
+    public class LoadingCountdownState : IState
     {
         private readonly StartCountdown _startCountdown;
         private GameStateMachine _gameStateMachine;
-        public LoadingCountdown(GameStateMachine gameStateMachine, StartCountdown startCountdown)
+        public LoadingCountdownState(GameStateMachine gameStateMachine, StartCountdown startCountdown)
         {
             _gameStateMachine = gameStateMachine;
             _startCountdown = startCountdown;

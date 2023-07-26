@@ -19,9 +19,14 @@ public class Spawn : MonoBehaviour
 
     private void Start()
     {
+        SetCoordinates();
+        StartCoroutine(NewSpawn(_countEnemySpawn));
+    }
+
+    private void SetCoordinates()
+    {
         _min = _collider.bounds.min;
         _max = _collider.bounds.max;
-        StartCoroutine(NewSpawn(_countEnemySpawn));
     }
 
     private IEnumerator NewSpawn( int count)
@@ -46,7 +51,6 @@ public class Spawn : MonoBehaviour
         _colliders = Physics.OverlapBox(startPosition, _sizeColider);
         if(_colliders.Length > 0)
         {
-            Debug.Log(_collider.name);
             return false;
         }
         else

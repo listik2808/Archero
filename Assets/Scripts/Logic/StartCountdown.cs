@@ -1,9 +1,7 @@
 ﻿using Scripts.Hero;
 using System.Collections;
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Scripts.Logic
 {
