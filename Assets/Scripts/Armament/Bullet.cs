@@ -1,29 +1,17 @@
-﻿using Scripts.Enemy;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Armament
 {
-    public class Bullet: MonoBehaviour
+    public abstract partial class Bullet: MonoBehaviour
     {
-        [SerializeField] private int _damage;
-        [SerializeField] private float _speed;
+        [SerializeField] protected int _damage;
+        [SerializeField] protected float _speed;
 
-        private void OnTriggerEnter(Collider other)
+        public float Speed => _speed;
+
+        private void Update()
         {
-            if(other.gameObject.TryGetComponent(out Enemy enemy))
-            {
-                enemy.TakeDamage(_damage);
-                Destroy(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
+            transform.Translate(Vector3.forward * Speed * Time.deltaTime);
         }
     }
 }

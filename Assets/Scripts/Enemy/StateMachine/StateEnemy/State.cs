@@ -6,7 +6,9 @@ namespace Scripts.Enemy.StateMachine.StateEnemy
     public abstract class State : MonoBehaviour
     {
         [SerializeField] private Transition _transition;
+        [SerializeField] protected Enemy _enemy;
         protected NavMeshAgent _agent;
+        protected float _timeStop;
         public Transition Transition => _transition;
 
         protected Transform Target { get; set; }
@@ -15,6 +17,7 @@ namespace Scripts.Enemy.StateMachine.StateEnemy
         private void Start()
         {
             _agent= GetComponent<NavMeshAgent>();
+            _agent.speed = _enemy.SpeedMovement;
         }
 
         public void ActivateState()
@@ -28,9 +31,9 @@ namespace Scripts.Enemy.StateMachine.StateEnemy
             Transition.DiactivateTransition();
         }
 
-        public void SetPointTarget(Transform target)
+        public void SetTarget()
         {
-            Target = target;
+            Target = _enemy.Target.transform;
         }
 
         private void TransitionState()

@@ -10,16 +10,22 @@ namespace Scripts.Enemy
     {
         [SerializeField] private EnemyStateMachine _enemyStateMachine;
         [SerializeField] private NavMeshAgent _agent;
+        [SerializeField] private float _speedMovement;
+        [SerializeField] private float _rangeMovement;
+        [SerializeField] private float _stopMove;
         [SerializeField] private int _health;
         [SerializeField] private int _damage;
         [SerializeField] private float _rateFire;
-        [SerializeField] private float _stopMove;
-        [SerializeField] private float _rangeMovement;
-        [SerializeField] private float _speedMovement;
         [SerializeField] private int _reward;
 
         private Player _target;
 
+        public float SpeedMovement => _speedMovement;
+        public float RangeMovement => _rangeMovement;
+        public float StopMove => _stopMove;
+        public int Health => _health;
+        public int Damage => _damage;
+        public float RateFire => _rateFire;
         public Player Target => _target;
 
         public event Action<int> Dying;

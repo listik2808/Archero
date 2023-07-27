@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Net.NetworkInformation;
+using UnityEngine;
 
 namespace Scripts.Hero
 {
@@ -14,6 +15,16 @@ namespace Scripts.Hero
         public void OnEnemyDied(int reward)
         {
             Money += reward;
+        }
+
+        public void TakeDamage(int damage)
+        {
+            _health -= damage;
+
+            if (_health <= 0)
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 }

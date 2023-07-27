@@ -9,7 +9,6 @@ namespace Scripts.Enemy.StateMachine
     {
         [SerializeField] private State _firstState;
         [SerializeField] private State _enemyMove;
-        [SerializeField] private Enemy _enemy;
 
         private State _activeState;
         private Player _player;
@@ -22,8 +21,8 @@ namespace Scripts.Enemy.StateMachine
 
         void Start()
         {
-            _firstState.SetPointTarget(_enemy.Target.transform);
-            _enemyMove.SetPointTarget(_enemy.Target.transform);
+            _firstState.SetTarget();
+            _enemyMove.SetTarget();
         }
 
         private void Update()
