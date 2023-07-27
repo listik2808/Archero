@@ -1,10 +1,11 @@
+using Scripts.Enemy;
 using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Spawn : MonoBehaviour
 {
-    [SerializeField] private GameObject _cubeEnemy;
+    [SerializeField] private Enemy _enemy;
     [SerializeField] private Collider _collider;
     [SerializeField] private int _countEnemySpawn;
 
@@ -39,7 +40,7 @@ public class Spawn : MonoBehaviour
             _check = CheckSpawnPoint(_startPosition);
             if (_check)
             {
-                Instantiate(_cubeEnemy, _startPosition, Quaternion.identity);
+                Instantiate(_enemy, _startPosition, Quaternion.identity);
                 count--;
             }
             yield return null;
