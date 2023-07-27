@@ -7,5 +7,6 @@ namespace Scripts.Infrastructure.Factory
     {
         GameObject CreateHero(GameObject at);
         void CreateHud();
+        GameObject CreatPointSpawnEnemy(GameObject point);
     }
 }

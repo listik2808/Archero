@@ -18,5 +18,8 @@ namespace Scripts.Infrastructure.Factory
 
         public void CreateHud() =>
             _assets.Instantiate(AssetPath.HudPath);
+
+        public GameObject CreatPointSpawnEnemy(GameObject point) => 
+            _assets.Instantiate(AssetPath.SpawnEnemy,point.transform.position);
     }
 }

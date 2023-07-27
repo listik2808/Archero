@@ -2,6 +2,7 @@
 using Scripts.CameraLogic;
 using Scripts.Logic;
 using UnityEngine;
+using Scripts.Hero;
 
 namespace Scripts.Infrastructure.State
 {
@@ -9,6 +10,7 @@ namespace Scripts.Infrastructure.State
     {
 
         private const string InitialPointTag = "InitialPoint";
+        private const string PointSpawn = "PointSpawn";
 
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
@@ -37,6 +39,9 @@ namespace Scripts.Infrastructure.State
         private void onLoaded()
         {
             GameObject hero = _gamefactory.CreateHero(GameObject.FindWithTag(InitialPointTag));
+            GameObject spaw = _gamefactory.CreatPointSpawnEnemy(GameObject.FindWithTag(PointSpawn));
+            Player player = hero.GetComponent<Player>();
+            spaw.GetComponent<Spawn>().SetTarget(player);
             _gamefactory.CreateHud();
             CameraFollow(hero);
 

@@ -1,4 +1,5 @@
 ﻿using Scripts.Enemy.StateMachine.StateEnemy;
+using Scripts.Hero;
 using UnityEngine;
 
 namespace Scripts.Enemy.StateMachine
@@ -8,14 +9,21 @@ namespace Scripts.Enemy.StateMachine
     {
         [SerializeField] private State _firstState;
         [SerializeField] private State _enemyMove;
+        [SerializeField] private Enemy _enemy;
 
         private State _activeState;
-
-        public State Current => _activeState;
+        private Player _player;
 
         private void OnEnable()
         {
             _activeState = _firstState;
+            _activeState.ActivateState();
+        }
+
+        void Start()
+        {
+            _firstState.SetPointTarget(_enemy.Target.transform);
+            _enemyMove.SetPointTarget(_enemy.Target.transform);
         }
 
         private void Update()
@@ -35,6 +43,11 @@ namespace Scripts.Enemy.StateMachine
                 Enter(_firstState);
                 Exit(_enemyMove);
             }
+        }
+
+        public void SetTarget(Player player)
+        {
+            _player = player;
         }
 
         private void Enter(State state)

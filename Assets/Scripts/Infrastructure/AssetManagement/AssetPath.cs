@@ -4,5 +4,7 @@
     {
         public const string HeroPath = "Hero/hero";
         public const string HudPath = "Hud/Hud";
+        public const string EnemyPath = "Enemy/enemy";
+        public const string SpawnEnemy = "Enemy/Spawn";
     }
 }
